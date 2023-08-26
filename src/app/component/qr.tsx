@@ -10,6 +10,7 @@ export default function Qr() {
       <>
          <input
             type="text"
+            placeholder="https://nurullahnergiz.com/"
             onChange={(e) => {
                setQr(e.target.value);
             }}
