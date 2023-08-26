@@ -8,7 +8,11 @@ export default function Qr() {
 
    return (
       <>
-         <input type="text" value={qr} onInput={(e) => setQr(e.target.value)} />
+         <input
+            type="text"
+            value={qr}
+            onInput={(e) => setQr(e.target?.value)}
+         />
          <QRCode value={qr} />
       </>
    );
