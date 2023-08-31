@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import QRCode from "react-qr-code";
+import QRCode from "qrcode";
+import { useState, useMemo } from "react";
 
 export default function Qr() {
-   const [qr, setQr] = useState("");
+   const [qrInput, setQrInput] = useState(" ");
+   const [qrCodeText, setQrCodeText] = useState("");
+   const [qrCodeImage, setQrCodeImage] = useState("");
+
+   useMemo(() => {
+      QRCode.toDataURL(qrInput).then((url: string) => {
+         setQrCodeImage(url);
+      });
+
+      QRCode.toString(qrInput).then((url: string) => {
+         setQrCodeText(url);
+      });
+   }, [qrInput]);
 
    return (
       <>
@@ -12,11 +24,14 @@ export default function Qr() {
             type="text"
             placeholder="https://nurullahnergiz.com/"
             onChange={(e) => {
-               setQr(e.target.value);
+               setQrInput(e.target.value);
             }}
-            value={qr}
+            value={qrInput}
          />
-         <QRCode value={qr} />
+
+         <img src={qrCodeImage} alt="QR Code Image" />
+         <h2>SVG Format</h2>
+         <span>{qrCodeText}</span>
       </>
    );
 }

@@ -30,3 +30,11 @@ body {
       )
       rgb(var(--background-start-rgb));
 }
+
+body > div > img {
+   @apply w-64 mb-3;
+}
+
+body > div > span {
+   @apply w-64 h-64 bg-white block overflow-y-auto;
+}
