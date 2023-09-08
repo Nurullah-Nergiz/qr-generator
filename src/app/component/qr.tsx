@@ -1,22 +1,27 @@
 "use client";
 
 import QRCode from "qrcode";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 export default function Qr() {
    const [qrInput, setQrInput] = useState(" ");
    const [qrCodeText, setQrCodeText] = useState("");
    const [qrCodeImage, setQrCodeImage] = useState("");
 
-   useMemo(() => {
-      QRCode.toDataURL(qrInput).then((url: string) => {
+   useEffect(() => {
+      QRCode.toDataURL(qrInput ?? " ").then((url: string) => {
          setQrCodeImage(url);
       });
 
-      QRCode.toString(qrInput).then((url: string) => {
+      QRCode.toString(qrInput ?? " ").then((url: string) => {
          setQrCodeText(url);
       });
    }, [qrInput]);
+
+   const copy = async () => {
+      await navigator.clipboard.writeText(qrCodeText);
+      setQrInput(" ");
+   };
 
    return (
       <>
@@ -26,12 +31,13 @@ export default function Qr() {
             onChange={(e) => {
                setQrInput(e.target.value);
             }}
-            value={qrInput}
+            value={qrInput.trim()}
          />
-
-         <img src={qrCodeImage} alt="QR Code Image" />
+         {qrCodeImage ? <img src={qrCodeImage} alt="QR Code Image" /> : null}
          <h2>SVG Format</h2>
-         <span>{qrCodeText}</span>
+         <button onClick={copy} disabled={!qrInput}>
+            Copy
+         </button>
       </>
    );
 }
