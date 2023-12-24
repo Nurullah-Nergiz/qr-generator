@@ -1,7 +1,5 @@
 # React QR Code Generator App
 
-This project includes a simple QR code generation application built with React. The app allows users to convert text or links into QR codes.
-
 ## Getting Started
 
 These steps include the basic instructions to run and develop the project on your local machine.
