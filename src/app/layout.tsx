@@ -2,6 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Nav from "./component/nav";
+import Header from "./component/header/indexx";
+import Footer from "./component/footer/index";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,21 +28,15 @@ export default function RootLayout({
                href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
                rel="stylesheet"></link>
          </head>
-         <body className={inter.className}>
-            <section className="container h-16 p-4 mx-auto flex items-center justify-between bg-white rounded-md shadow-md shadow-gray-500">
-               <header className="w">Logo</header>
-               <nav className="w">
-                  <Link href="/" className="bx bx-home text-2xl">
-                     Home
-                  </Link>
-               </nav>
-            </section>
-            <main className="container h-full p-4 mx-auto my-4 bg-white rounded-md shadow-md shadow-gray-500">
-               {children}
-            </main>
-            <footer className="container h-16 p-4 mx-auto bg-white rounded-md shadow-md shadow-gray-500">
-               asd
-            </footer>
+         <body className={inter.className + " p-6"}>
+            <div className="container max-w-6xl h-full mx-auto  flex flex-col">
+               <section className="h-16 flex items-center justify-between ">
+                  <Header />
+                  <Nav />
+               </section>
+               <main className="h-full  my-4 ">{children}</main>
+               <Footer />
+            </div>
          </body>
       </html>
    );

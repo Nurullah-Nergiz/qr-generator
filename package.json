@@ -3,6 +3,10 @@
    "description": "This project includes a simple QR code generation application built with React. The app allows users to convert text or links into QR codes.",
    "version": "0.1.0",
    "private": true,
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/Nurullah-Nergiz/qr-generator"
+   },
    "scripts": {
       "dev": "next dev",
       "build": "next build",
